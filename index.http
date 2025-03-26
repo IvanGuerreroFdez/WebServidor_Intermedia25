@@ -20,11 +20,11 @@ Content-Type: application/json
 
 ### Validar email
 PUT http://localhost:3000/api/user/validatemail
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTNmMjc5YmUwY2YyYTRhMzk5YTVlNyIsImVtYWlsIjoidGVzdHVzZXI2QGdtYWlsLmNvbSIsImlhdCI6MTc0Mjk5MTk5MywiZXhwIjoxNzQyOTk1NTkzfQ.ItNObyZpR4x5Y7R_QovfJfRUQKOsRGNvpV6RFlQ3LLw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTNkZGMzOTkxYjcwY2UyOGVlZTczMCIsImVtYWlsIjoidGVzdHVzZXIyQGdtYWlsLmNvbSIsImlhdCI6MTc0MzAxMjUzNCwiZXhwIjoxNzQzMDE2MTM0fQ.t5CN_NZwJnZ_re0BIdeAkimKkL1-_W6mjMSsGytq-3A
 Content-Type: application/json
 
 {
-    "code": "447604" 
+    "code": "149626" 
 }
 
 ### Login
@@ -32,6 +32,33 @@ POST http://localhost:3000/api/user/login
 Content-Type: application/json
 
 {
-    "email": "testuser@gmail.com",
+    "email": "testuser2@gmail.com",
     "password": "TestPassword123"
+}
+
+### Actualizar datos personales
+PUT http://localhost:3000/api/user/personadata
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTNkNjRjYWY5MDRhMmNjMmYzMTYwMSIsImVtYWlsIjoidGVzdHVzZXJAZ21haWwuY29tIiwiaWF0IjoxNzQzMDE0NjU1LCJleHAiOjE3NDMwMTgyNTV9.ezMru9ipirxSndF-d-dULs-TwjqPDO1MedACbKdhSnI
+
+{
+    "name": "Ivan",
+    "surname": "Guerrero",
+    "nif": "12345678P"
+}
+
+### Comprobar guardado datos persona
+GET http://localhost:3000/api/user/persona
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTNkZGMzOTkxYjcwY2UyOGVlZTczMCIsImVtYWlsIjoidGVzdHVzZXIyQGdtYWlsLmNvbSIsImlhdCI6MTc0MzAxMjUzNCwiZXhwIjoxNzQzMDE2MTM0fQ.t5CN_NZwJnZ_re0BIdeAkimKkL1-_W6mjMSsGytq-3A
+
+
+### Actualizar datos compañía
+PATCH http://localhost:3000/api/user/companydata
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTNkZGMzOTkxYjcwY2UyOGVlZTczMCIsImVtYWlsIjoidGVzdHVzZXIyQGdtYWlsLmNvbSIsImlhdCI6MTc0MzAxNDc0NiwiZXhwIjoxNzQzMDE4MzQ2fQ.xtLyVAVYw8yZzNYxEhLHI3Y5dKHY30d0ODmDg4kkpcU
+
+{
+    "companyName": "U-tad",
+    "cif": "A12345678",
+    "address": "Calle Prueba, 123"
 }

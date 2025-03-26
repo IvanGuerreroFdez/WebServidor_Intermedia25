@@ -14,7 +14,10 @@ const authenticate = (req, res, next) => {
       return res.status(403).json({ message: 'Token no válido' });
     }
 
-    req.user = decoded;
+    //trazas
+    req.user = { _id: decoded.id, email: decoded.email };
+    console.log("Decoded token:", decoded);
+    console.log("User ID from token:", req.user.id); 
     next();
   });
 };
