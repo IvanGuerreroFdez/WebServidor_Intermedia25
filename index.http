@@ -3,17 +3,26 @@ POST http://localhost:3000/api/user/register
 Content-Type: application/json
 
 {
-    "email": "testuser@gmail.com",
+    "email": "testuser6@gmail.com",
     "password": "TestPassword123"
 }
 
 ### Email test
 POST http://localhost:3000/api/mail
-Content-Type: application/json
+
 
 {
     "subject": "Test Email",
     "text": "This is a test email",
     "to": "hackkill74@gmail.com",
     "from": ""
+}
+
+### Validar email
+PUT http://localhost:3000/api/user/validatemail
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTNmMjc5YmUwY2YyYTRhMzk5YTVlNyIsImVtYWlsIjoidGVzdHVzZXI2QGdtYWlsLmNvbSIsImlhdCI6MTc0Mjk5MTk5MywiZXhwIjoxNzQyOTk1NTkzfQ.ItNObyZpR4x5Y7R_QovfJfRUQKOsRGNvpV6RFlQ3LLw
+Content-Type: application/json
+
+{
+    "code": "447604" 
 }

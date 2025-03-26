@@ -2,6 +2,8 @@ const User = require('../models/users');
 const { hashPassword } = require('../utils/handlePassword');
 const { generateToken } = require('../utils/handleJwt');
 const { validationResult } = require('express-validator');
+const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
 
 exports.registerUser = async (req, res) => {
     try {
@@ -12,26 +14,20 @@ exports.registerUser = async (req, res) => {
 
         const { email, password } = req.body;
 
-        // Verificar si el usuario ya existe
         const userExists = await User.findOne({ email });
         if (userExists) {
             return res.status(409).json({ message: 'El email ya está registrado' });
         }
 
-        // Cifrar la contraseña
         const hashedPassword = await hashPassword(password);
-
-        // Generar código de verificación
         const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
 
-        // Crear usuario
         const user = await User.create({
             email,
             password: hashedPassword,
             verificationCode
         });
 
-        // Generar token
         const token = generateToken(user);
 
         res.status(201).json({
@@ -48,3 +44,34 @@ exports.registerUser = async (req, res) => {
         res.status(500).json({ message: 'Error en el servidor' });
     }
 };
+
+exports.validateEmail = async (req, res) => {
+    const { code } = req.body; 
+  
+    if (!code) {
+      return res.status(400).json({ message: 'El código de verificación es requerido' });
+    }
+  
+    try {
+      const decoded = jwt.verify(req.headers.authorization.split(' ')[1], process.env.JWT_SECRET);
+      const userId = decoded.id;
+  
+      const user = await User.findById(userId);
+  
+      if (!user) {
+        return res.status(404).json({ message: 'Usuario no encontrado' });
+      }
+  
+      if (user.verificationCode === code) {
+        user.status = 'verified';
+        await user.save();
+  
+        res.status(200).json({ message: 'Email verificado con éxito' });
+      } else {
+        return res.status(400).json({ message: 'Código de verificación incorrecto' });
+      }
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ message: 'Error al verificar el email' });
+    }
+  };
