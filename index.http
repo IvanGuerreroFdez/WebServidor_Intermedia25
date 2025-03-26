@@ -3,13 +3,13 @@ POST http://localhost:3000/api/user/register
 Content-Type: application/json
 
 {
-    "email": "testuser6@gmail.com",
+    "email": "fedive2057@amgens.com",
     "password": "TestPassword123"
 }
 
 ### Email test
 POST http://localhost:3000/api/mail
-
+Content-Type: application/json
 
 {
     "subject": "Test Email",

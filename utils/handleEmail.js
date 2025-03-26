@@ -1,4 +1,4 @@
-//require("dotenv").config();
+require("dotenv").config();
 const nodemailer = require("nodemailer");
 const { google } = require("googleapis");
 const OAuth2 = google.auth.OAuth2;
@@ -16,10 +16,10 @@ const createTransporter = async () => {
 
     const accessToken = await new Promise((resolve, reject) => {
         oauth2Client.getAccessToken((err, token) => {
-        if (err) {
-            reject("Failed to create access token.");
-        }
-        resolve(token);
+            if (err) {
+                reject("Failed to create access token.");
+            }
+            resolve(token);
         });
     });
 
@@ -42,8 +42,8 @@ const sendEmail = async (emailOptions) => {
         let emailTransporter = await createTransporter();
         await emailTransporter.sendMail(emailOptions);
     } catch (e) {
-        console.log(e)
+        console.log(e);
     }
 };
 
-module.exports = { sendEmail }
+module.exports = { sendEmail };

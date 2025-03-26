@@ -4,6 +4,7 @@ const { generateToken } = require('../utils/handleJwt');
 const { validationResult } = require('express-validator');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
+const { sendEmail } = require('../utils/handleEmail');
 
 exports.registerUser = async (req, res) => {
     try {
@@ -28,6 +29,14 @@ exports.registerUser = async (req, res) => {
             verificationCode
         });
 
+        const emailOptions = {
+            from: process.env.EMAIL, 
+            to: email, 
+            subject: 'Código de Verificación',
+            text: `Tu código de verificación es: ${verificationCode}`
+        };
+
+        await sendEmail(emailOptions);
         const token = generateToken(user);
 
         res.status(201).json({
