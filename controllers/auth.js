@@ -5,6 +5,7 @@ const { validationResult } = require('express-validator');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const { sendEmail } = require('../utils/handleEmail');
+const { comparePassword } = require('../utils/handlePassword');
 
 exports.registerUser = async (req, res) => {
     try {
@@ -83,4 +84,39 @@ exports.validateEmail = async (req, res) => {
       console.error(err);
       return res.status(500).json({ message: 'Error al verificar el email' });
     }
-  };
+};
+
+exports.loginUser = async (req, res) => {
+  try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+          return res.status(422).json({ errors: errors.array() });
+      }
+
+      const { email, password } = req.body;
+
+      const user = await User.findOne({ email });
+      if (!user) {
+          return res.status(400).json({ message: 'Credenciales incorrectas' });
+      }
+
+      const isPasswordValid = await comparePassword(password, user.password);
+      if (!isPasswordValid) {
+          return res.status(400).json({ message: 'Credenciales incorrectas' });
+      }
+
+      const token = generateToken(user);
+      res.status(200).json({
+          token,
+          user: {
+              email: user.email,
+              status: user.status,
+              role: user.role,
+              _id: user._id
+          }
+      });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Error en el servidor' });
+  }
+};

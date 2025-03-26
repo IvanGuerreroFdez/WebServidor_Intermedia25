@@ -1,6 +1,5 @@
 const { check, validationResult } = require('express-validator');
 
-// Función para manejar los resultados de la validación
 const validateResults = (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
