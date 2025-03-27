@@ -22,7 +22,9 @@
   "homepage": "https://github.com/IvanGuerreroFdez/WebServidor_Intermedia25#readme",
   "dependencies": {
     "express-validator": "^7.2.1",
+    "form-data": "^4.0.2",
     "googleapis": "^146.0.0",
+    "multer": "^1.4.5-lts.2",
     "nodemailer": "^6.10.0"
   }
 }

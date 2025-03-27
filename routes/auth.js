@@ -4,6 +4,8 @@ const { validateRegister, validateLogin } = require('../validators/auth');
 const { DataPersona, DataCompany } = require('../controllers/data');
 const { validatePersonaData, validateCompanyData } = require('../validators/data');
 const User = require('../models/users');
+const { uploadImage } = require('../controllers/logo');
+const { uploadMiddleware, uploadMiddlewareMemory } = require('../utils/handleStorage');
 
 const verificationToken = require('../middleware/verificationToken');
 const verificationCode = require('../validators/verificationCode');
@@ -37,5 +39,6 @@ router.get('/persona', verificationToken, async (req, res) => {
 });
 
 router.patch('/companydata', verificationToken, validateCompanyData, DataCompany);
+router.patch('/logo', verificationToken, uploadMiddlewareMemory.single('logo'), uploadImage);
 
 module.exports = router;
