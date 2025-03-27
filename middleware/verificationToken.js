@@ -17,7 +17,7 @@ const authenticate = (req, res, next) => {
     //trazas
     req.user = { _id: decoded.id, email: decoded.email };
     console.log("Decoded token:", decoded);
-    console.log("User ID from token:", req.user.id); 
+    console.log("User ID from token:", req.user._id); 
     next();
   });
 };

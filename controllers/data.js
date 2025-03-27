@@ -1,5 +1,6 @@
 const User = require('../models/users');
 const { validationResult } = require('express-validator');
+const mongoose = require('mongoose');
 
 exports.DataPersona = async (req, res) => {
     try {
@@ -8,24 +9,27 @@ exports.DataPersona = async (req, res) => {
             return res.status(422).json({ errors: errors.array() });
         }
         const { name, surname, nif } = req.body;
-        const { id } = req.user; 
+        const { _id } = req.user; 
 
-        const user = await User.findById(id);
+        const user = await User.findById(_id);
+        //const user = await User.findById(mongoose.Types.ObjectId(id));
+        console.log("Usuario:", user);
+
         if (!user) {
             return res.status(404).json({ message: 'Usuario no encontrado' });
         }
 
-        user.name = name || user.name;
-        user.surname = surname || user.surname;
-        user.nif = nif || user.nif;
+        user.persona.name = name || user.persona.name;
+        user.persona.surname = surname || user.persona.surname;
+        user.persona.nif = nif || user.persona.nif;
         await user.save();
 
         res.status(200).json({
             message: 'Datos personales actualizados con exito',
             user: {
-                name: user.name,
-                surname: user.surname,
-                nif: user.nif
+                name: user.persona.name,
+                surname: user.persona.surname,
+                nif: user.persona.nif
             }
         });
     } catch (error) {
@@ -35,7 +39,7 @@ exports.DataPersona = async (req, res) => {
 };
 
 exports.DataCompany = async (req, res) => {
-    const { companyName, cif, address } = req.body;
+    const { companyName, cif, address, number, postal, city, province } = req.body;
     const { _id } = req.user;
     console.log("ID del usuario desde req.user:", _id); 
 
@@ -45,22 +49,38 @@ exports.DataCompany = async (req, res) => {
             return res.status(404).json({ message: 'Usuario no encontrado' });
         }
         if (user.isAutonomous) {
-            user.companyName = user.name;
-            user.cif = user.nif;
-            user.address = user.surname;
+            user.company = {
+                companyName: user.persona.name,
+                cif: user.persona.nif,
+                address: address, 
+                number: number,
+                postal: postal,
+                city: city,
+                province: province
+            };
         } else {
-            user.companyName = companyName;
-            user.cif = cif;
-            user.address = address;
+            user.company = {
+                companyName: companyName,
+                cif: cif,
+                address: address,
+                number: number,
+                postal: postal,
+                city: city,
+                province: province
+            };
         }
 
         await user.save();
         res.status(200).json({
             message: 'Datos de la compañía actualizados con éxito',
             user: {
-                companyName: user.companyName,
-                cif: user.cif,
-                address: user.address
+                companyName: user.persona.name,
+                cif: user.persona.nif,
+                address: user.company.address,
+                number: user.company.number,
+                postal: user.company.postal,
+                city: user.company.city,
+                province: user.company.province
             }
         });
     } catch (err) {

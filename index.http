@@ -3,7 +3,7 @@ POST http://localhost:3000/api/user/register
 Content-Type: application/json
 
 {
-    "email": "fedive2057@amgens.com",
+    "email": "testuser13@gmail.com",
     "password": "TestPassword123"
 }
 
@@ -20,11 +20,11 @@ Content-Type: application/json
 
 ### Validar email
 PUT http://localhost:3000/api/user/validatemail
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTNkZGMzOTkxYjcwY2UyOGVlZTczMCIsImVtYWlsIjoidGVzdHVzZXIyQGdtYWlsLmNvbSIsImlhdCI6MTc0MzAxMjUzNCwiZXhwIjoxNzQzMDE2MTM0fQ.t5CN_NZwJnZ_re0BIdeAkimKkL1-_W6mjMSsGytq-3A
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTUwZmNmODRjMjNjZWQzNDE2MzYyYiIsImVtYWlsIjoidGVzdHVzZXIxMEBnbWFpbC5jb20iLCJpYXQiOjE3NDMwNjUwNDAsImV4cCI6MTc0MzA2ODY0MH0.23jy2Vbh861Lr6lTERgcL_Gtb4ZCEjuoXhebrEy0GKc
 Content-Type: application/json
 
 {
-    "code": "149626" 
+    "code": "556448" 
 }
 
 ### Login
@@ -32,14 +32,14 @@ POST http://localhost:3000/api/user/login
 Content-Type: application/json
 
 {
-    "email": "testuser2@gmail.com",
+    "email": "testuser12@gmail.com",
     "password": "TestPassword123"
 }
 
 ### Actualizar datos personales
 PUT http://localhost:3000/api/user/personadata
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTNkNjRjYWY5MDRhMmNjMmYzMTYwMSIsImVtYWlsIjoidGVzdHVzZXJAZ21haWwuY29tIiwiaWF0IjoxNzQzMDE0NjU1LCJleHAiOjE3NDMwMTgyNTV9.ezMru9ipirxSndF-d-dULs-TwjqPDO1MedACbKdhSnI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTUxY2VmNDE4M2Y4NDUxZTBmMGY4ZCIsImVtYWlsIjoidGVzdHVzZXIxM0BnbWFpbC5jb20iLCJpYXQiOjE3NDMwNjg0MDEsImV4cCI6MTc0MzA3MjAwMX0.HUrM75fS9eSLSB19VT3jMlz6lNO1X_1rVIJ7awk4geA
 
 {
     "name": "Ivan",
@@ -49,16 +49,20 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTNkNjRjY
 
 ### Comprobar guardado datos persona
 GET http://localhost:3000/api/user/persona
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTNkZGMzOTkxYjcwY2UyOGVlZTczMCIsImVtYWlsIjoidGVzdHVzZXIyQGdtYWlsLmNvbSIsImlhdCI6MTc0MzAxMjUzNCwiZXhwIjoxNzQzMDE2MTM0fQ.t5CN_NZwJnZ_re0BIdeAkimKkL1-_W6mjMSsGytq-3A
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTUwYzJmMzlmYTNjNjg4OGUxZGRhZiIsImVtYWlsIjoidGVzdHVzZXI3QGFtZ2Vucy5jb20iLCJpYXQiOjE3NDMwNjQxMTIsImV4cCI6MTc0MzA2NzcxMn0.ZmP_XfjopmoN2L1mo87XNg_Ln0ZsV-eAs76LQ-AODTs
 
 
 ### Actualizar datos compañía
 PATCH http://localhost:3000/api/user/companydata
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTNkZGMzOTkxYjcwY2UyOGVlZTczMCIsImVtYWlsIjoidGVzdHVzZXIyQGdtYWlsLmNvbSIsImlhdCI6MTc0MzAxNDc0NiwiZXhwIjoxNzQzMDE4MzQ2fQ.xtLyVAVYw8yZzNYxEhLHI3Y5dKHY30d0ODmDg4kkpcU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTUxY2VmNDE4M2Y4NDUxZTBmMGY4ZCIsImVtYWlsIjoidGVzdHVzZXIxM0BnbWFpbC5jb20iLCJpYXQiOjE3NDMwNjg0MDEsImV4cCI6MTc0MzA3MjAwMX0.HUrM75fS9eSLSB19VT3jMlz6lNO1X_1rVIJ7awk4geA
 
 {
     "companyName": "U-tad",
     "cif": "A12345678",
-    "address": "Calle Prueba, 123"
+    "address": "Calle Prueba, 123",
+    "number": 123,
+    "postal": 28290,
+    "city": "Madrid",
+    "province": "Madrid"
 }
