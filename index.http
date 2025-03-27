@@ -3,7 +3,7 @@ POST http://localhost:3000/api/user/register
 Content-Type: application/json
 
 {
-    "email": "testuser13@gmail.com",
+    "email": "lihin57345@dizigg.com",
     "password": "TestPassword123"
 }
 
@@ -32,7 +32,7 @@ POST http://localhost:3000/api/user/login
 Content-Type: application/json
 
 {
-    "email": "testuser13@gmail.com",
+    "email": "testuser12@gmail.com",
     "password": "TestPassword123"
 }
 
@@ -47,9 +47,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTUxY2VmN
     "nif": "12345678P"
 }
 
-### Comprobar guardado datos persona
+### Comprobar guardado datos persona (OBSOLETO)
 GET http://localhost:3000/api/user/persona
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTUwYzJmMzlmYTNjNjg4OGUxZGRhZiIsImVtYWlsIjoidGVzdHVzZXI3QGFtZ2Vucy5jb20iLCJpYXQiOjE3NDMwNjQxMTIsImV4cCI6MTc0MzA2NzcxMn0.ZmP_XfjopmoN2L1mo87XNg_Ln0ZsV-eAs76LQ-AODTs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTUxY2VmNDE4M2Y4NDUxZTBmMGY4ZCIsImVtYWlsIjoidGVzdHVzZXIxM0BnbWFpbC5jb20iLCJpYXQiOjE3NDMxMDE4NDYsImV4cCI6MTc0MzEwNTQ0Nn0.Ox-ipmTqzWmE0YZTtzLVKJDnLtafui7haDC0cOovxjc
 
 
 ### Actualizar datos compañía
@@ -79,3 +79,31 @@ Content-Type: image/png
 < C:\Users\theiv\Downloads\logo.png
 --boundary123--
 
+### GetUser
+GET http://localhost:3000/api/user/getuser
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTUxY2VmNDE4M2Y4NDUxZTBmMGY4ZCIsImVtYWlsIjoidGVzdHVzZXIxM0BnbWFpbC5jb20iLCJpYXQiOjE3NDMxMDE5MzAsImV4cCI6MTc0MzEwNTUzMH0.5lj3e2ctgCfkjIYvfdJLhQRaZ1sikBQn4wU4q1exlKQ
+
+### DeleteUser (soft)
+DELETE http://localhost:3000/api/user/deleteuser?soft=true
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTUxY2VmNDE4M2Y4NDUxZTBmMGY4ZCIsImVtYWlsIjoidGVzdHVzZXIxM0BnbWFpbC5jb20iLCJpYXQiOjE3NDMxMDIxMjMsImV4cCI6MTc0MzEwNTcyM30.m87N5gQtFXFYfEYE7EiQnPsIF1ft8yweNnpW5kSsFQM
+
+### DeleteUser (hard)
+DELETE http://localhost:3000/api/user/deleteuser?soft=false
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTVhMGZlM2ExZGRmZWYzMGEzMDZhNCIsImVtYWlsIjoidGVzdHVzZXIxNEBnbWFpbC5jb20iLCJpYXQiOjE3NDMxMDIzNzcsImV4cCI6MTc0MzEwNTk3N30.KqDd-FKAW35Zu8wxzCTVZqK9AE38A1j3w4LCqS2TaY4
+
+### Recuperar Password
+POST http://localhost:3000/api/user/forgotpassword
+Content-Type: application/json
+
+{
+    "email": "lihin57345@dizigg.com"
+}
+
+### Invitar Compañero
+POST http://localhost:3000/api/user/invite
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTUxMjMzNWE4M2JhYzIwNDE4MWJkMiIsImVtYWlsIjoidGVzdHVzZXIxMkBnbWFpbC5jb20iLCJpYXQiOjE3NDMxMDMyNjgsImV4cCI6MTc0MzEwNjg2OH0.ZaIx6XHTNxdj-OGDmA4FwAoizrmkPXUsPbpJlmOFGF4
+Content-Type: application/json
+
+{
+    "email": "liwob45503@deenur.com"
+}
