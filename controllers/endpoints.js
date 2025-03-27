@@ -97,6 +97,15 @@ exports.inviteUser = async (req, res) => {
             await invitedUser.save();
         }
 
+        const emailOptions = {
+            from: process.env.EMAIL,
+            to: email,
+            subject: 'Invitacion',
+            text: `Ha sido invitad a unirse a la práctica parcial de WebServidor!`
+        };
+
+        await sendEmail(emailOptions);
+
         res.status(201).json({
             message: 'Usuario invitado correctamente',
             user: invitedUser,

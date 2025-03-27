@@ -101,9 +101,9 @@ Content-Type: application/json
 
 ### Invitar Compañero
 POST http://localhost:3000/api/user/invite
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTUxMjMzNWE4M2JhYzIwNDE4MWJkMiIsImVtYWlsIjoidGVzdHVzZXIxMkBnbWFpbC5jb20iLCJpYXQiOjE3NDMxMDMyNjgsImV4cCI6MTc0MzEwNjg2OH0.ZaIx6XHTNxdj-OGDmA4FwAoizrmkPXUsPbpJlmOFGF4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTUxMjMzNWE4M2JhYzIwNDE4MWJkMiIsImVtYWlsIjoidGVzdHVzZXIxMkBnbWFpbC5jb20iLCJpYXQiOjE3NDMxMDM4MzUsImV4cCI6MTc0MzEwNzQzNX0.CbeHbrNuw0j6yDR71dd-kN6NSLGnaXJ-gh-hTdpfGDg
 Content-Type: application/json
 
 {
-    "email": "liwob45503@deenur.com"
+    "email": "defibal183@dizigg.com"
 }
