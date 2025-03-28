@@ -32,7 +32,7 @@ POST http://localhost:3000/api/user/login
 Content-Type: application/json
 
 {
-    "email": "testuser12@gmail.com",
+    "email": "testuser@gmail.com",
     "password": "TestPassword123"
 }
 
@@ -69,14 +69,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTUxY2VmN
 
 ### Subir logo a IPFS
 PATCH http://localhost:3000/api/user/logo HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTUxY2VmNDE4M2Y4NDUxZTBmMGY4ZCIsImVtYWlsIjoidGVzdHVzZXIxM0BnbWFpbC5jb20iLCJpYXQiOjE3NDMwOTk3MzUsImV4cCI6MTc0MzEwMzMzNX0.CXr6LPwaGWPZqo1yDA6YjSuuWRLRcnj4jZvDXYh4PtY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTNkNjRjYWY5MDRhMmNjMmYzMTYwMSIsImVtYWlsIjoidGVzdHVzZXJAZ21haWwuY29tIiwiaWF0IjoxNzQzMTY1MjE2LCJleHAiOjE3NDMxNjg4MTZ9.dyM81Y2jk58jQZHQCQHoH8xulvbCRifR7dP4cHnKpXs
 Content-Type: multipart/form-data; boundary=boundary123
 
 --boundary123
-Content-Disposition: form-data; name="logo"; filename="logo.png"
-Content-Type: image/png
+Content-Disposition: form-data; name="logo"; filename="fondo.jpg"
+Content-Type: image/jpg
 
-< C:\Users\theiv\Downloads\logo.png
+< C:\Users\theiv\Downloads\fondo.jpg
 --boundary123--
 
 ### GetUser

@@ -19,5 +19,9 @@ const multer=require('multer')
  
  const uploadMiddleware = multer({storage}) //Middleware entre la ruta y el controlador
  
- const uploadMiddlewareMemory = multer({storage: memory, limits: 500})
+ const uploadMiddlewareMemory = multer({
+    storage: memory,
+    limits: { fileSize: 5 * 1024 * 1024 } // Límite de 5MB
+});
+
  module.exports = { uploadMiddleware, uploadMiddlewareMemory }
