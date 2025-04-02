@@ -62,7 +62,7 @@ exports.forgotPassword = async (req, res) => {
             from: process.env.EMAIL,
             to: email,
             subject: 'Recuperar contraseña',
-            text: `Haga clic en el siguiente enlace para recuperar su contraseña: http://localhost:3000/reset-password/${resetToken}`
+            text: `Haga clic en el siguiente enlace para recuperar su contraseña: http://localhost:3000/forgotpassword/${resetToken}`
         };
 
         await sendEmail(emailOptions);

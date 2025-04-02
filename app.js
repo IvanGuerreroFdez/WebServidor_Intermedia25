@@ -1,5 +1,8 @@
 const express = require('express');
 const cors = require('cors');
+const swaggerUi = require("swagger-ui-express")
+const swaggerSpecs = require("./docs/swagger")
+
 require('dotenv').config();
 
 const routers = require('./routes');
@@ -15,6 +18,11 @@ app.use((req, res, next) => {
     console.log("Cuerpo de la solicitud:", req.body);  
     next();
 });
+
+app.use("/api-docs",
+    swaggerUi.serve,
+    swaggerUi.setup(swaggerSpecs)
+)
 
 app.use('/api', routers); 
 
