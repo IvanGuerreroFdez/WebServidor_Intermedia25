@@ -27,8 +27,9 @@ app.use("/api-docs",
 app.use('/api', routers); 
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => {
+const server = app.listen(port, () => {
     console.log(`Escuchando en el puerto ${port}`);
 });
 
+module.exports = { app, server};
 dbConnect();
