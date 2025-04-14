@@ -8,5 +8,6 @@ const { send } = require("../controllers/mail")
 router.post('/mail', validatorMail, send)
 
 router.use('/user', authRoutes);
+router.use('/client', require('./client'));
 
 module.exports = router;

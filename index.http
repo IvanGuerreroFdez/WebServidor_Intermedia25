@@ -3,7 +3,7 @@ POST http://localhost:3000/api/user/register
 Content-Type: application/json
 
 {
-    "email": "testuser6@test.com",
+    "email": "testuser10@test.com",
     "password": "TestPassword123"
 }
 
@@ -32,7 +32,7 @@ POST http://localhost:3000/api/user/login
 Content-Type: application/json
 
 {
-    "email": "testuser@gmail.com",
+    "email": "testuser10@test.com",
     "password": "TestPassword123"
 }
 
@@ -107,3 +107,64 @@ Content-Type: application/json
 {
     "email": "defibal183@dizigg.com"
 }
+
+### Práctica Final
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNlM2E2Yzg0ODAzNWIxYjliYzg5NyIsImVtYWlsIjoidGVzdHVzZXI5QHRlc3QuY29tIiwiaWF0IjoxNzQ0NjI2NTk5LCJleHAiOjE3NDQ2MzAxOTl9.mEa4-pTG3erJ2JTi4s2VoNCduFgh0BAapnT82ggke4c
+### crear cliente
+POST http://localhost:3000/api/client/create
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Pepe3",
+  "cif": "D52921210",
+  "address": {
+    "street": "chile 2",
+    "number": 22,
+    "postal": 28290,
+    "city": "Las Rozas",
+    "province": "Madrid"
+  }
+}
+
+### mostrar todos los clientes
+GET http://localhost:3000/api/client/show
+Authorization: Bearer {{token}}
+
+### mostrar cliente específico
+GET http://localhost:3000/api/client/67fce3bbc848035b1b9bc89a
+Authorization: Bearer {{token}}
+
+### actualizar cliente
+PUT http://localhost:3000/api/client/67fce3bbc848035b1b9bc89a
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "JOSE",
+  "cif": "A12345679",
+  "address": {
+    "street": "Gran Vía",
+    "number": 12,
+    "postal": 28013,
+    "city": "Madrid",
+    "province": "Madrid"
+  }
+}
+
+### archivar cliente (soft delete)
+DELETE http://localhost:3000/api/client/archive/67fce3cbc848035b1b9bc89e
+Authorization: Bearer {{token}}
+
+### eliminar cliente (hard delete)
+DELETE http://localhost:3000/api/client/67fce45cc848035b1b9bc8a8
+Authorization: Bearer {{token}}
+
+### mostrar archivados
+GET http://localhost:3000/api/client/archived
+Authorization: Bearer {{token}}
+
+### restaurar cliente
+PATCH http://localhost:3000/api/client/restore/67fce3cbc848035b1b9bc89e
+Authorization: Bearer {{token}}
+
