@@ -34,7 +34,7 @@ exports.getClientById = async (req, res) => {
       _id: req.params.id,
       $or: [{ userId: req.user.id }, { companyId: req.user.companyId }]
     });
-    if (!client) return res.status(404).json({ message: "Client not found." });
+    if (!client) return res.status(404).json({ message: "Client not found" });
     res.status(200).json(client);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -80,7 +80,7 @@ exports.restoreClient = async (req, res) => {
 exports.deleteClient = async (req, res) => {
   try {
     await Client.findByIdAndDelete(req.params.id);
-    res.status(200).json({ message: "Client deleted." });
+    res.status(200).json({ message: "Client deleted" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
