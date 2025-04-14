@@ -1,7 +1,11 @@
 const Client = require("../models/client");
+const handleClientError = require("../utils/handleClientError");
 
 exports.createClient = async (req, res) => {
   try {
+    const errorResponse = handleClientError(req, res);
+    if (errorResponse) return;
+
     const { name, cif, address } = req.body;
     const userId = req.user.id;
     const existing = await Client.findOne({ name, userId, archived: false });
@@ -17,6 +21,9 @@ exports.createClient = async (req, res) => {
 
 exports.getClients = async (req, res) => {
   try {
+    const errorResponse = handleClientError(req, res);
+    if (errorResponse) return;
+
     const userId = req.user.id;
     const clients = await Client.find({
       $or: [{ userId }, { companyId: req.user.companyId }],
@@ -30,6 +37,9 @@ exports.getClients = async (req, res) => {
 
 exports.getClientById = async (req, res) => {
   try {
+    const errorResponse = handleClientError(req, res);
+    if (errorResponse) return;
+    
     const client = await Client.findOne({
       _id: req.params.id,
       $or: [{ userId: req.user.id }, { companyId: req.user.companyId }]
@@ -43,6 +53,9 @@ exports.getClientById = async (req, res) => {
 
 exports.updateClient = async (req, res) => {
   try {
+    const errorResponse = handleClientError(req, res);
+    if (errorResponse) return;
+    
     const updated = await Client.findByIdAndUpdate(req.params.id, req.body, { new: true });
     res.status(200).json(updated);
   } catch (error) {
@@ -52,6 +65,9 @@ exports.updateClient = async (req, res) => {
 
 exports.archiveClient = async (req, res) => {
   try {
+    const errorResponse = handleClientError(req, res);
+    if (errorResponse) return;
+    
     const archived = await Client.findByIdAndUpdate(req.params.id, { archived: true }, { new: true });
     res.status(200).json(archived);
   } catch (error) {
@@ -61,6 +77,9 @@ exports.archiveClient = async (req, res) => {
 
 exports.getArchivedClients = async (req, res) => {
   try {
+    const errorResponse = handleClientError(req, res);
+    if (errorResponse) return;
+    
     const archived = await Client.find({ userId: req.user.id, archived: true });
     res.status(200).json(archived);
   } catch (error) {
@@ -70,6 +89,9 @@ exports.getArchivedClients = async (req, res) => {
 
 exports.restoreClient = async (req, res) => {
   try {
+    const errorResponse = handleClientError(req, res);
+    if (errorResponse) return;
+    
     const restored = await Client.findByIdAndUpdate(req.params.id, { archived: false }, { new: true });
     res.status(200).json(restored);
   } catch (error) {
@@ -79,6 +101,9 @@ exports.restoreClient = async (req, res) => {
 
 exports.deleteClient = async (req, res) => {
   try {
+    const errorResponse = handleClientError(req, res);
+    if (errorResponse) return;
+    
     await Client.findByIdAndDelete(req.params.id);
     res.status(200).json({ message: "Client deleted" });
   } catch (error) {

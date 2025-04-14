@@ -41,7 +41,11 @@ const { clientValidator } = require("../validators/client");
  *       200:
  *         description: Cliente creado con éxito
  *       400:
- *         description: Cliente ya existente
+ *         description: Ya existe un cliente con ese nombre
+ *       401:
+ *         description: Token no proporcionado o inválido
+ *       422:
+ *         description: Error de validación de campos
  */
 router.post("/create", verifyToken, clientValidator, createClient);
 
@@ -56,6 +60,8 @@ router.post("/create", verifyToken, clientValidator, createClient);
  *     responses:
  *       200:
  *         description: Lista de clientes
+ *       401:
+ *         description: Token no proporcionado o inválido
  */
 router.get("/show", verifyToken, getClients);
 
@@ -70,6 +76,8 @@ router.get("/show", verifyToken, getClients);
  *     responses:
  *       200:
  *         description: Lista de clientes archivados
+ *       401:
+ *         description: Token no proporcionado o inválido
  */
 router.get("/archived", verifyToken, getArchivedClients);
 
@@ -90,6 +98,10 @@ router.get("/archived", verifyToken, getArchivedClients);
  *     responses:
  *       200:
  *         description: Cliente encontrado
+ *       401:
+ *         description: Token no proporcionado o inválido
+ *       403:
+ *         description: No tienes permisos sobre este cliente
  *       404:
  *         description: Cliente no encontrado
  */
@@ -136,6 +148,14 @@ router.get("/:id", verifyToken, getClientById);
  *     responses:
  *       200:
  *         description: Cliente actualizado
+ *       401:
+ *         description: Token no proporcionado o inválido
+ *       403:
+ *         description: No tienes permisos para actualizar este cliente
+ *       404:
+ *         description: Cliente no encontrado
+ *       422:
+ *         description: Error de validación de campos
  */
 router.put("/:id", verifyToken, clientValidator, updateClient);
 
@@ -156,6 +176,12 @@ router.put("/:id", verifyToken, clientValidator, updateClient);
  *     responses:
  *       200:
  *         description: Cliente eliminado
+ *       401:
+ *         description: Token no proporcionado o inválido
+ *       403:
+ *         description: No tienes permisos para borrar este cliente
+ *       404:
+ *         description: Cliente no encontrado
  */
 router.delete("/:id", verifyToken, deleteClient);
 
@@ -176,6 +202,12 @@ router.delete("/:id", verifyToken, deleteClient);
  *     responses:
  *       200:
  *         description: Cliente archivado
+ *       401:
+ *         description: Token no proporcionado o inválido
+ *       403:
+ *         description: No tienes permisos para archivar este cliente
+ *       404:
+ *         description: Cliente no encontrado
  */
 router.delete("/archive/:id", verifyToken, archiveClient);
 
@@ -196,6 +228,12 @@ router.delete("/archive/:id", verifyToken, archiveClient);
  *     responses:
  *       200:
  *         description: Cliente restaurado
+ *       401:
+ *         description: Token no proporcionado o inválido
+ *       403:
+ *         description: No tienes permisos para restaurar este cliente
+ *       404:
+ *         description: Cliente no encontrado
  */
 router.patch("/restore/:id", verifyToken, restoreClient);
 
