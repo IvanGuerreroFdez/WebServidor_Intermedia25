@@ -3,7 +3,7 @@ POST http://localhost:3000/api/user/register
 Content-Type: application/json
 
 {
-    "email": "testuser10@test.com",
+    "email": "testuser11@test.com",
     "password": "TestPassword123"
 }
 
@@ -109,7 +109,7 @@ Content-Type: application/json
 }
 
 ### Práctica Final
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmNlM2E2Yzg0ODAzNWIxYjliYzg5NyIsImVtYWlsIjoidGVzdHVzZXI5QHRlc3QuY29tIiwiaWF0IjoxNzQ0NjI2NTk5LCJleHAiOjE3NDQ2MzAxOTl9.mEa4-pTG3erJ2JTi4s2VoNCduFgh0BAapnT82ggke4c
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmQzNTI0YjE1ZjA0YjE2OTM1MGU5MCIsImVtYWlsIjoidGVzdHVzZXIxMUB0ZXN0LmNvbSIsImlhdCI6MTc0NDY0NzQ2MSwiZXhwIjoxNzQ0NjUxMDYxfQ.jCmvpxTSwdB6QqhQ3Xk0xVZI_8xopTBYcuWjTvmiqO4
 ### crear cliente
 POST http://localhost:3000/api/client/create
 Authorization: Bearer {{token}}
@@ -168,3 +168,67 @@ Authorization: Bearer {{token}}
 PATCH http://localhost:3000/api/client/restore/67fce3cbc848035b1b9bc89e
 Authorization: Bearer {{token}}
 
+### crear proyecto
+POST http://localhost:3000/api/project/create
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Proyecto de prueba2",
+  "projectCode": "P2",
+  "email": "test2@proyecto.com",
+  "code": "002",
+  "clientId": "67fce3bbc848035b1b9bc89a",
+  "address": {
+    "street": "Calle chile",
+    "number": 22,
+    "postal": 28730,
+    "city": "Las Matas",
+    "province": "Madrid"
+  },
+  "notes": "proyecto de prueba2"
+}   
+
+### mostrar lista proyectos
+GET http://localhost:3000/api/project/show
+Authorization: Bearer {{token}}
+
+### mostrar proyectos X cliente
+GET http://localhost:3000/api/project/show/67fce3bbc848035b1b9bc89a
+Authorization: Bearer {{token}}
+
+### mostrar X proyecto
+GET http://localhost:3000/api/project/show/67fce3bbc848035b1b9bc89a/67fd353ab15f04b169350e93
+Authorization: Bearer {{token}}
+
+### modificar X proyecto 
+PUT http://localhost:3000/api/project/modify/67fd353ab15f04b169350e93
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Proyecto actualizado",
+  "notes": "Modificado para pruebas",
+  "code": "101",
+  "email": "nuevo@proyecto.com"
+}
+
+### archivar un proyecto (soft delete)
+DELETE http://localhost:3000/api/project/archive/67fd353ab15f04b169350e93
+Authorization: Bearer {{token}}
+
+### mostar lista proyectos archivados
+GET http://localhost:3000/api/project/archived
+Authorization: Bearer {{token}}
+
+### mostar lista proyectos archivados de X cliente
+GET http://localhost:3000/api/project/archived/67fce3bbc848035b1b9bc89a
+Authorization: Bearer {{token}}
+
+### recuperar proyecto ya archivaddo
+PATCH http://localhost:3000/api/project/restore/67fd353ab15f04b169350e93
+Authorization: Bearer {{token}}
+
+### eliminar proyecto (hard delete)
+DELETE http://localhost:3000/api/project/delete/67fd353ab15f04b169350e93
+Authorization: Bearer {{token}}

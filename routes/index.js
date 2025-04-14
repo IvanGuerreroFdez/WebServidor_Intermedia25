@@ -9,5 +9,7 @@ router.post('/mail', validatorMail, send)
 
 router.use('/user', authRoutes);
 router.use('/client', require('./client'));
+router.use('/project', require('./project'));
+
 
 module.exports = router;
