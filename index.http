@@ -1,9 +1,15 @@
+### ===============================================================
+### ===============================================================
+### ===================== Práctica Intermedia =====================
+### ===============================================================
+### ===============================================================
+
 ### Registro de usuario
 POST http://localhost:3000/api/user/register
 Content-Type: application/json
 
 {
-    "email": "testuser11@test.com",
+    "email": "testuser13@test.com",
     "password": "TestPassword123"
 }
 
@@ -108,15 +114,23 @@ Content-Type: application/json
     "email": "defibal183@dizigg.com"
 }
 
+
+
+### ===============================================================
+### ===============================================================
+### ===================== Práctica Final ==========================
+### ======================== Clientes =============================
+### ===============================================================
+### ===============================================================
 ### Práctica Final
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmQzNTI0YjE1ZjA0YjE2OTM1MGU5MCIsImVtYWlsIjoidGVzdHVzZXIxMUB0ZXN0LmNvbSIsImlhdCI6MTc0NDY0NzQ2MSwiZXhwIjoxNzQ0NjUxMDYxfQ.jCmvpxTSwdB6QqhQ3Xk0xVZI_8xopTBYcuWjTvmiqO4
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY5NWExMjMzMjFlYzQ5NGZiNjM2NiIsImVtYWlsIjoidGVzdHVzZXIxM0B0ZXN0LmNvbSIsImlhdCI6MTc0NDgwMzIzMywiZXhwIjoxNzQ0ODA2ODMzfQ.RvehDRlYW96l6a0kj_VyibNMPUo7VOJe5ngZQkhwlaY
 ### crear cliente
 POST http://localhost:3000/api/client/create
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "name": "Pepe3",
+  "name": "AlbaranTest",
   "cif": "D52921210",
   "address": {
     "street": "chile 2",
@@ -168,17 +182,24 @@ Authorization: Bearer {{token}}
 PATCH http://localhost:3000/api/client/restore/67fce3cbc848035b1b9bc89e
 Authorization: Bearer {{token}}
 
+
+### ===============================================================
+### ===============================================================
+### ===================== Práctica Final ==========================
+### ======================== Proyecto =============================
+### ===============================================================
+### ===============================================================
 ### crear proyecto
 POST http://localhost:3000/api/project/create
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "name": "Proyecto de prueba2",
-  "projectCode": "P2",
-  "email": "test2@proyecto.com",
-  "code": "002",
-  "clientId": "67fce3bbc848035b1b9bc89a",
+  "name": "Proyecto prueba Albaran",
+  "projectCode": "P3",
+  "email": "test3@proyecto.com",
+  "code": "003",
+  "clientId": "67ff95a123321ec494fb6366",
   "address": {
     "street": "Calle chile",
     "number": 22,
@@ -186,7 +207,7 @@ Content-Type: application/json
     "city": "Las Matas",
     "province": "Madrid"
   },
-  "notes": "proyecto de prueba2"
+  "notes": "proyecto de prueba3"
 }   
 
 ### mostrar lista proyectos
@@ -231,4 +252,71 @@ Authorization: Bearer {{token}}
 
 ### eliminar proyecto (hard delete)
 DELETE http://localhost:3000/api/project/delete/67fd353ab15f04b169350e93
+Authorization: Bearer {{token}}
+
+
+
+### ===============================================================
+### ===============================================================
+### ===================== Práctica Final ==========================
+### ======================== Albarans =============================
+### ===============================================================
+### ===============================================================
+### crear albaran (materiales)
+POST http://localhost:3000/api/albaran/create
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "clientId": "67ff95a123321ec494fb6366",
+  "projectId": "67ff961023321ec494fb636c",
+  "format": "material",
+  "materials": ["cemento", "arena", "hierro"],
+  "description": "Materiales para la base",
+  "workdate": "2025-04-14"
+}
+
+### crear albaran (trabajadores)
+POST http://localhost:3000/api/albaran/create
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "clientId": "67ff95a123321ec494fb6366",
+  "projectId": "67ff961023321ec494fb636c",
+  "format": "hours",
+  "workers": [
+    { "name": "Pepe", "hours": 1 },
+    { "name": "Popo", "hours": 2 }
+  ],
+  "description": "Testeo",
+  "workdate": "2025-04-14"
+}
+
+### mostrar lista de albaranes
+GET http://localhost:3000/api/albaran/show
+Authorization: Bearer {{token}}
+
+### mostrar X albaran
+GET http://localhost:3000/api/albaran/show/67ff966d23321ec494fb6370
+Authorization: Bearer {{token}}
+
+### firmar albaran y generar PDF (subida a Pinata)
+POST http://localhost:3000/api/albaran/firmar/67ff96e523321ec494fb6388
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data; boundary=boundary124
+
+--boundary124
+Content-Disposition: form-data; name="file"; filename="firma.jpg"
+Content-Type: image/jpg
+
+< C:\Users\Hackkill\Downloads\firma.jpg
+--boundary124--
+
+### descarga pdf
+GET http://localhost:3000/api/albaran/pdf/67ff96e523321ec494fb6388
+Authorization: Bearer {{token}}
+
+### eliminar albarán (solo si NO está firmado) (hard delete)
+DELETE http://localhost:3000/api/albaran/delete/67ff963623321ec494fb636e
 Authorization: Bearer {{token}}

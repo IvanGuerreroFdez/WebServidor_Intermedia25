@@ -10,6 +10,6 @@ router.post('/mail', validatorMail, send)
 router.use('/user', authRoutes);
 router.use('/client', require('./client'));
 router.use('/project', require('./project'));
-
+router.use("/albaran", require("./albaran"));
 
 module.exports = router;
