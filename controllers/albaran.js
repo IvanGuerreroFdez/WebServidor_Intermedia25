@@ -3,6 +3,7 @@ const Storage = require("../models/storage");
 const { uploadToPinata } = require("../utils/handleIPFS");
 const PDF = require("pdfkit");
 //const {uploadImage} = require("./logo");
+const axios = require('axios');
 
 exports.createAlbaran = async (req, res) => {
   try {
@@ -58,6 +59,11 @@ exports.signAlbaran = async (req, res) => {
         if (!note) return res.status(404).json({ message: "Albaran not found" });
         if (!note.pending) return res.status(400).json({ message: "Ya está firmado" });
     
+        //arreglos errores en cannot read properties
+        const userEmail = note.userId?.email || "No disponible";
+        const clientName = note.clientId?.name || "No disponible";
+        const projectName = note.projectId?.name || "No disponible";
+
         const document = new PDF();
         let pdfBuffer = [];
     
@@ -81,9 +87,12 @@ exports.signAlbaran = async (req, res) => {
         });
     
         document.fontSize(16).text("ALBARAN", { align: "center" }).moveDown();
-        document.fontSize(12).text(`Usuario: ${note.userId.email}`);
+        /* document.fontSize(12).text(`Usuario: ${note.userId.email}`);
         document.text(`Cliente: ${note.clientId.name}`);
-        document.text(`Proyecto: ${note.projectId.name}`);
+        document.text(`Proyecto: ${note.projectId.name}`); */
+        document.fontSize(12).text(`Usuario: ${userEmail}`);
+        document.text(`Cliente: ${clientName}`);
+        document.text(`Proyecto: ${projectName}`);
         document.text(`Descripción: ${note.description}`);
         document.text(`Formato: ${note.format}`);
         /* document.text(`Horas: ${note.hours || "N/A"}`);
@@ -119,7 +128,14 @@ exports.createPDF = async (req, res) => {
         const note = await Albaran.findById(req.params.id);
         if (!note || !note.pdf) return res.status(404).json({ message: "PDF no disponible" });
     
-        res.redirect(note.pdf);
+        //res.redirect(note.pdf);
+        if (note.userId._id.toString() !== req.user.id && req.user.role !== "guest") {
+            return res.status(403).json({ message: "No tienes permiso para acceder a este albarán" });
+        }
+      
+        const pdfStream = await axios.get(note.pdf, { responseType: 'stream' });
+        res.setHeader('Content-Type', 'application/pdf');
+        pdfStream.data.pipe(res);
     } catch (error) {
         res.status(500).json({ message: "Error al obtener el PDF" });
     }

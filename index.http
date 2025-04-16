@@ -38,7 +38,7 @@ POST http://localhost:3000/api/user/login
 Content-Type: application/json
 
 {
-    "email": "testuser10@test.com",
+    "email": "testuser13@test.com",
     "password": "TestPassword123"
 }
 
@@ -123,7 +123,7 @@ Content-Type: application/json
 ### ===============================================================
 ### ===============================================================
 ### Práctica Final
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY5NWExMjMzMjFlYzQ5NGZiNjM2NiIsImVtYWlsIjoidGVzdHVzZXIxM0B0ZXN0LmNvbSIsImlhdCI6MTc0NDgwMzIzMywiZXhwIjoxNzQ0ODA2ODMzfQ.RvehDRlYW96l6a0kj_VyibNMPUo7VOJe5ngZQkhwlaY
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY5NWExMjMzMjFlYzQ5NGZiNjM2NiIsImVtYWlsIjoidGVzdHVzZXIxM0B0ZXN0LmNvbSIsImlhdCI6MTc0NDgwOTMwMSwiZXhwIjoxNzQ0ODEyOTAxfQ.IBrpAoTpzwZyvVHVexzghCeRf6mAgrURvzWLRof_mhQ
 ### crear cliente
 POST http://localhost:3000/api/client/create
 Authorization: Bearer {{token}}
@@ -286,10 +286,10 @@ Content-Type: application/json
   "projectId": "67ff961023321ec494fb636c",
   "format": "hours",
   "workers": [
-    { "name": "Pepe", "hours": 1 },
-    { "name": "Popo", "hours": 2 }
+    { "name": "Pepe2", "hours": 1 },
+    { "name": "Popo2", "hours": 2 }
   ],
-  "description": "Testeo",
+  "description": "Testeo2",
   "workdate": "2025-04-14"
 }
 
@@ -302,7 +302,7 @@ GET http://localhost:3000/api/albaran/show/67ff966d23321ec494fb6370
 Authorization: Bearer {{token}}
 
 ### firmar albaran y generar PDF (subida a Pinata)
-POST http://localhost:3000/api/albaran/firmar/67ff96e523321ec494fb6388
+POST http://localhost:3000/api/albaran/firmar/67ffad78b106c7ca8a52f7cb
 Authorization: Bearer {{token}}
 Content-Type: multipart/form-data; boundary=boundary124
 
@@ -314,9 +314,9 @@ Content-Type: image/jpg
 --boundary124--
 
 ### descarga pdf
-GET http://localhost:3000/api/albaran/pdf/67ff96e523321ec494fb6388
+GET http://localhost:3000/api/albaran/pdf/67ffad78b106c7ca8a52f7cb
 Authorization: Bearer {{token}}
 
 ### eliminar albarán (solo si NO está firmado) (hard delete)
-DELETE http://localhost:3000/api/albaran/delete/67ff963623321ec494fb636e
+DELETE http://localhost:3000/api/albaran/delete/67ffad78b106c7ca8a52f7cb
 Authorization: Bearer {{token}}
