@@ -123,7 +123,7 @@ Content-Type: application/json
 ### ===============================================================
 ### ===============================================================
 ### Práctica Final
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY5NWExMjMzMjFlYzQ5NGZiNjM2NiIsImVtYWlsIjoidGVzdHVzZXIxM0B0ZXN0LmNvbSIsImlhdCI6MTc0NDgwOTMwMSwiZXhwIjoxNzQ0ODEyOTAxfQ.IBrpAoTpzwZyvVHVexzghCeRf6mAgrURvzWLRof_mhQ
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY5NWExMjMzMjFlYzQ5NGZiNjM2NiIsImVtYWlsIjoidGVzdHVzZXIxM0B0ZXN0LmNvbSIsImlhdCI6MTc0NDgxMzU3MCwiZXhwIjoxNzQ0ODE3MTcwfQ.SHPc1LROYqN9MQZqZ4vB_LxJI2mmAPLsAnYmQzoGc3A
 ### crear cliente
 POST http://localhost:3000/api/client/create
 Authorization: Bearer {{token}}
@@ -314,6 +314,9 @@ Content-Type: image/jpg
 --boundary124--
 
 ### descarga pdf
+### aqui VSCode te devuelve el cotnenido del pdf en hexadecimal
+### Tuve que descargar una extension del navegador para pasarle el token y acceder a la URL directamente
+### Me mostró el pdf correctamente
 GET http://localhost:3000/api/albaran/pdf/67ffad78b106c7ca8a52f7cb
 Authorization: Bearer {{token}}
 

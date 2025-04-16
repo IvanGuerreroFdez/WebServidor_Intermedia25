@@ -97,8 +97,8 @@ exports.signAlbaran = async (req, res) => {
         document.text(`Formato: ${note.format}`);
         /* document.text(`Horas: ${note.hours || "N/A"}`);
         document.text(`Trabajadores: ${note.workers.name || "N/A"}`);
-        document.text(`Trabajadores (horas): ${note.workers.hours || "N/A"}`); */
-        document.text(`Material: ${note.material || "N/A"}`);
+        document.text(`Trabajadores (horas): ${note.workers.hours || "N/A"}`); 
+        document.text(`Material: ${note.material || "N/A"}`);*/
         document.text(`Fecha de trabajo: ${note.workdate || "N/A"}`);
         document.text(`Firmado: Sí`);
 
