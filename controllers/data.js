@@ -9,9 +9,9 @@ exports.DataPersona = async (req, res) => {
             return res.status(422).json({ errors: errors.array() });
         }
         const { name, surname, nif } = req.body;
-        const { _id } = req.user; 
+        const { id } = req.user; 
 
-        const user = await User.findById(_id);
+        const user = await User.findById(id);
         //const user = await User.findById(mongoose.Types.ObjectId(id));
         console.log("Usuario:", user);
 
@@ -40,11 +40,11 @@ exports.DataPersona = async (req, res) => {
 
 exports.DataCompany = async (req, res) => {
     const { companyName, cif, address, number, postal, city, province } = req.body;
-    const { _id } = req.user;
-    console.log("ID del usuario desde req.user:", _id); 
+    const { id } = req.user;
+    console.log("ID del usuario desde req.user:", id); 
 
     try {
-        const user = await User.findById(_id);
+        const user = await User.findById(id);
         if (!user) {
             return res.status(404).json({ message: 'Usuario no encontrado' });
         }

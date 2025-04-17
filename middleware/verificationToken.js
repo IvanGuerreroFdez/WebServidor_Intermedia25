@@ -22,7 +22,7 @@ const authenticate = (req, res, next) => {
       companyId: decoded.companyId || null //por si no se necesita darle null
     };
     console.log("Decoded token:", decoded);
-    console.log("User ID from token:", req.user._id); 
+    console.log("User ID from token:", req.user.id); 
     next();
   });
 };
