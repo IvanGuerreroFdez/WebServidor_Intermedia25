@@ -9,7 +9,7 @@ POST http://localhost:3000/api/user/register
 Content-Type: application/json
 
 {
-    "email": "testuser13@test.com",
+    "email": "keyoyer813@lushosa.com",
     "password": "TestPassword123"
 }
 
@@ -26,11 +26,11 @@ Content-Type: application/json
 
 ### Validar email
 PUT http://localhost:3000/api/user/validatemail
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTUwZmNmODRjMjNjZWQzNDE2MzYyYiIsImVtYWlsIjoidGVzdHVzZXIxMEBnbWFpbC5jb20iLCJpYXQiOjE3NDMwNjUwNDAsImV4cCI6MTc0MzA2ODY0MH0.23jy2Vbh861Lr6lTERgcL_Gtb4ZCEjuoXhebrEy0GKc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDExZDNhZjlmOTg5YmFjNGMwYzdiYSIsImVtYWlsIjoia2V5b3llcjgxM0BsdXNob3NhLmNvbSIsImlhdCI6MTc0NDkwMzQ4MywiZXhwIjoxNzQ0OTA3MDgzfQ.PkyXTCQIvD8-6kNKGbdAs4u9XS4FO0Dhw_U1CY0c-Uk
 Content-Type: application/json
 
 {
-    "code": "556448" 
+    "code": "305091" 
 }
 
 ### Login
@@ -45,7 +45,7 @@ Content-Type: application/json
 ### Actualizar datos personales
 PUT http://localhost:3000/api/user/personadata
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTUxY2VmNDE4M2Y4NDUxZTBmMGY4ZCIsImVtYWlsIjoidGVzdHVzZXIxM0BnbWFpbC5jb20iLCJpYXQiOjE3NDMwNjg0MDEsImV4cCI6MTc0MzA3MjAwMX0.HUrM75fS9eSLSB19VT3jMlz6lNO1X_1rVIJ7awk4geA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDExZDNhZjlmOTg5YmFjNGMwYzdiYSIsImVtYWlsIjoia2V5b3llcjgxM0BsdXNob3NhLmNvbSIsImlhdCI6MTc0NDkwMzQ4MywiZXhwIjoxNzQ0OTA3MDgzfQ.PkyXTCQIvD8-6kNKGbdAs4u9XS4FO0Dhw_U1CY0c-Uk
 
 {
     "name": "Ivan",
@@ -61,7 +61,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTUxY2VmN
 ### Actualizar datos compañía
 PATCH http://localhost:3000/api/user/companydata
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTUxY2VmNDE4M2Y4NDUxZTBmMGY4ZCIsImVtYWlsIjoidGVzdHVzZXIxM0BnbWFpbC5jb20iLCJpYXQiOjE3NDMwNjg0MDEsImV4cCI6MTc0MzA3MjAwMX0.HUrM75fS9eSLSB19VT3jMlz6lNO1X_1rVIJ7awk4geA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDExZDNhZjlmOTg5YmFjNGMwYzdiYSIsImVtYWlsIjoia2V5b3llcjgxM0BsdXNob3NhLmNvbSIsImlhdCI6MTc0NDkwMzQ4MywiZXhwIjoxNzQ0OTA3MDgzfQ.PkyXTCQIvD8-6kNKGbdAs4u9XS4FO0Dhw_U1CY0c-Uk
 
 {
     "companyName": "U-tad",
@@ -123,7 +123,7 @@ Content-Type: application/json
 ### ===============================================================
 ### ===============================================================
 ### Práctica Final
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY5NWExMjMzMjFlYzQ5NGZiNjM2NiIsImVtYWlsIjoidGVzdHVzZXIxM0B0ZXN0LmNvbSIsImlhdCI6MTc0NDgxMzU3MCwiZXhwIjoxNzQ0ODE3MTcwfQ.SHPc1LROYqN9MQZqZ4vB_LxJI2mmAPLsAnYmQzoGc3A
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY5NWExMjMzMjFlYzQ5NGZiNjM2NiIsImVtYWlsIjoidGVzdHVzZXIxM0B0ZXN0LmNvbSIsImlhdCI6MTc0NDkwNDU0MiwiZXhwIjoxNzQ0OTA4MTQyfQ.VEhqm0b6fbg4dq3dgRxTDU1I5TS3tLxaUMfuuO2ozkY
 ### crear cliente
 POST http://localhost:3000/api/client/create
 Authorization: Bearer {{token}}
@@ -322,4 +322,8 @@ Authorization: Bearer {{token}}
 
 ### eliminar albarán (solo si NO está firmado) (hard delete)
 DELETE http://localhost:3000/api/albaran/delete/67ffad78b106c7ca8a52f7cb
+Authorization: Bearer {{token}}
+
+### prueba slack
+GET http://localhost:3000/api/client/test-error
 Authorization: Bearer {{token}}

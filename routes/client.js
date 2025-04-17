@@ -237,4 +237,9 @@ router.delete("/archive/:id", verifyToken, archiveClient);
  */
 router.patch("/restore/:id", verifyToken, restoreClient);
 
+//pruebas Slack
+router.get('/test-error', (req, res) => {
+    throw new Error('Error forzado para probar Slack 🚨');
+});
+
 module.exports = router;
