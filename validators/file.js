@@ -1,4 +1,5 @@
 const { check } = require("express-validator");
+const { validateResults } = require("../utils/handleValidator");
 
 const validateSignatureUpload = [
   check("file")
@@ -13,7 +14,8 @@ const validateSignatureUpload = [
       }
 
       return true;
-    })
+    }),
+    (req, res, next) => validateResults(req, res, next)
 ];
 
 module.exports = { validateSignatureUpload };

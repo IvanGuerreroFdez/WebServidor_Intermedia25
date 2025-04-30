@@ -1,16 +1,11 @@
-const { body, validationResult } = require('express-validator');
+const { body } = require('express-validator');
+const validateResults = require('../utils/handleValidator');
 
-module.exports = [
-    body('code')
-        .isNumeric().withMessage('Codigo numerico?')
-        .isLength({ min: 6, max: 6 }).withMessage('6 digitos máximo'),
-    (req, res, next) => {
-        console.log("Cuerpo de la solicitud:", req.body); 
-        const errors = validationResult(req);
-
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
-        }
-        next();
-    }
+const validatorVerificationCode = [
+  body('code')
+    .isNumeric().withMessage('El código debe ser numérico')
+    .isLength({ min: 6, max: 6 }).withMessage('El código debe tener exactamente 6 dígitos'),
+  (req, res, next) => validateResults(req, res, next)
 ];
+
+module.exports = { validatorVerificationCode };

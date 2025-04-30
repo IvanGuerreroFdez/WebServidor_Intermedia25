@@ -1,7 +1,7 @@
 const User = require('../models/users');
 const { hashPassword } = require('../utils/handlePassword');
 const { generateToken } = require('../utils/handleJwt');
-const { validationResult } = require('express-validator');
+//const { validationResult } = require('express-validator');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const { sendEmail } = require('../utils/handleEmail');
@@ -9,10 +9,10 @@ const { comparePassword } = require('../utils/handlePassword');
 
 exports.registerUser = async (req, res) => {
     try {
-        const errors = validationResult(req);
+        /* const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(422).json({ errors: errors.array() });
-        }
+        } */
 
         const { email, password } = req.body;
 
@@ -58,9 +58,9 @@ exports.registerUser = async (req, res) => {
 exports.validateEmail = async (req, res) => {
     const { code } = req.body; 
   
-    if (!code) {
+    /* if (!code) {
       return res.status(400).json({ message: 'El código de verificación es requerido' });
-    }
+    } */
   
     try {
       const decoded = jwt.verify(req.headers.authorization.split(' ')[1], process.env.JWT_SECRET);
@@ -88,10 +88,10 @@ exports.validateEmail = async (req, res) => {
 
 exports.loginUser = async (req, res) => {
   try {
-      const errors = validationResult(req);
+      /* const errors = validationResult(req);
       if (!errors.isEmpty()) {
           return res.status(422).json({ errors: errors.array() });
-      }
+      } */
 
       const { email, password } = req.body;
 

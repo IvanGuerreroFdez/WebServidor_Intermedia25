@@ -42,7 +42,7 @@ describe('Onboarding', () => {
       .send({ code: verificationCode })
       .expect(200);
 
-    expect(res.body.message).toMatch(/verificado/i);
+    expect(res.body.message).toBe("Email verificado con éxito");
   });
 
   it('Login de usuario', async () => {
@@ -148,6 +148,7 @@ describe('Onboarding', () => {
   
     expect(res.body.url).toContain('https://');
   });
+  
   afterAll(async () => {
     await usersModel.deleteMany({});
     await mongoose.connection.close();

@@ -1,22 +1,12 @@
-const { check, validationResult } = require('express-validator');
-
-const validateResults = (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
-    }
-    next();
-};
+const { check } = require("express-validator");
+const validateResults = require("../utils/handleValidator");
 
 const validatorMail = [
-    check("subject").exists().notEmpty(),
-    check("text").exists().notEmpty(),
-    check("to").exists().notEmpty(),
-    check("from").exists().notEmpty(),
+  check("subject").exists().notEmpty().withMessage("El asunto es obligatorio"),
+  check("text").exists().notEmpty().withMessage("El texto es obligatorio"),
+  check("to").exists().notEmpty().withMessage("El destinatario es obligatorio"),
+  check("from").exists().notEmpty().withMessage("El remitente es obligatorio"),
+  (req, res, next) => validateResults(req, res, next)
+];
 
-    (req, res, next) => {
-        return validateResults(req, res, next)
-    }
-]
-
-module.exports = { validatorMail }
+module.exports = { validatorMail };

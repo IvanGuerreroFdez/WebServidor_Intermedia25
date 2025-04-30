@@ -1,4 +1,5 @@
 const { check } = require("express-validator");
+const validateResults = require("../utils/handleValidator");
 
 const albaranValidator = [
   check("clientId").notEmpty().withMessage("El ID del cliente es obligatorio"),
@@ -23,7 +24,8 @@ const albaranValidator = [
         throw new Error("Debe proporcionar al menos un trabajador con horas");
       }
       return true;
-    })
+    }),
+    (req, res, next) => validateResults(req, res, next)
 ];
 
 module.exports = { albaranValidator };
