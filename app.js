@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use((req, res, next) => {
-    console.log("Cuerpo de la solicitud:", req.body);  
+    //console.log("Cuerpo de la solicitud:", req.body);  
     next();
 });
 

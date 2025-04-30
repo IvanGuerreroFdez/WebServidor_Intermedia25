@@ -2,6 +2,10 @@ const StorageModel = require('../models/storage.js')
 const {uploadToPinata} = require('../utils/handleIPFS.js')
 const uploadImage = async (req, res) => {
     try {
+        if (!req.file) {
+            return res.status(400).json({ message: 'No se ha subido ningún archivo' });
+        }
+        
         const fileBuffer = req.file.buffer
         const filename = req.file.originalname
         console.log(req.file);

@@ -1,5 +1,5 @@
 const { check } = require('express-validator');
-const { validateResults } = require('../utils/handleValidator');
+const validateResults  = require('../utils/handleValidator');
 
 const validateRegister = [
     check('email', 'Debe ser un email válido').isEmail(),

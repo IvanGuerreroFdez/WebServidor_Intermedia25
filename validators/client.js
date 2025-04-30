@@ -1,5 +1,5 @@
 const { check } = require("express-validator");
-const { validateResults } = require("../utils/handleValidator");
+const validateResults = require("../utils/handleValidator");
 
 const clientValidator = [
   check("name").notEmpty().withMessage("El nombre es obligatorio"),

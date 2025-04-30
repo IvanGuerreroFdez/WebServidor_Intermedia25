@@ -9,7 +9,8 @@ const { uploadMiddleware, uploadMiddlewareMemory } = require('../utils/handleSto
 const { getUser, deleteUser, forgotPassword, inviteUser } = require('../controllers/endpoints');
 
 const verificationToken = require('../middleware/verificationToken');
-const verificationCode = require('../validators/verificationCode');
+//const verificationCode = require('../validators/verificationCode');
+const { validatorVerificationCode } = require('../validators/verificationCode');
 
 const router = express.Router();
 
@@ -35,7 +36,8 @@ const router = express.Router();
  *     security:
  *       - bearerAuth: []
  */
-router.post('/register', validateRegister, registerUser);
+//router.post('/register', validateRegister, registerUser);
+router.post('/register', ...validateRegister, registerUser);
 
 /**
  * @openapi
@@ -55,7 +57,8 @@ router.post('/register', validateRegister, registerUser);
  *       401:
  *         description: Unauthorized
  */
-router.put('/validatemail', verificationToken, verificationCode, validateEmail);
+//router.put('/validatemail', verificationToken, verificationCode, validateEmail);
+router.put('/validatemail', verificationToken, ...validatorVerificationCode, validateEmail);
 
 /**
  * @openapi
@@ -77,7 +80,8 @@ router.put('/validatemail', verificationToken, verificationCode, validateEmail);
  *       401:
  *         description: Invalid credentials
  */
-router.post('/login', validateLogin, loginUser);
+//router.post('/login', validateLogin, loginUser);
+router.post('/login', ...validateLogin, loginUser);
 
 /**
  * @openapi
@@ -95,7 +99,8 @@ router.post('/login', validateLogin, loginUser);
  *       400:
  *         description: Validation error
  */
-router.put('/personadata', verificationToken, validatePersonaData, DataPersona); 
+//router.put('/personadata', verificationToken, validatePersonaData, DataPersona);
+router.put('/personadata', verificationToken, ...validatePersonaData, DataPersona);
 
 /**
  * @openapi
@@ -114,7 +119,7 @@ router.put('/personadata', verificationToken, validatePersonaData, DataPersona);
  *         description: User not found
  */
 //traza para ver errores
-router.get('/persona', verificationToken, async (req, res) => {
+/* router.get('/persona', verificationToken, async (req, res) => {
     try {
         const user = await User.findById(req.user.id); 
 
@@ -132,7 +137,7 @@ router.get('/persona', verificationToken, async (req, res) => {
         console.error(error);
         res.status(500).json({ message: 'Error al obtener los datos del usuario' });
     }
-});
+}); */
 
 /**
  * @openapi
@@ -150,7 +155,8 @@ router.get('/persona', verificationToken, async (req, res) => {
  *       400:
  *         description: Validation error
  */
-router.patch('/companydata', verificationToken, validateCompanyData, DataCompany);
+//router.patch('/companydata', verificationToken, validateCompanyData, DataCompany);
+router.patch('/companydata', verificationToken, ...validateCompanyData, DataCompany);
 
 /**
  * @openapi
