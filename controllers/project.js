@@ -1,4 +1,6 @@
 const Project = require("../models/project");
+const Client = require("../models/client");
+
 
 exports.createProject = async (req, res) => {
   try {
@@ -77,6 +79,9 @@ exports.getArchivedProjects = async (req, res) => {
 
 exports.getArchivedByClient = async (req, res) => {
   try {
+    const client = await Client.findById(req.params.client);
+    if (!client) return res.status(404).json({ message: "Cliente no encontrado" });
+
     const archived = await Project.find({ clientId: req.params.client, archived: true });
     res.status(200).json(archived);
   } catch (error) {
@@ -86,6 +91,11 @@ exports.getArchivedByClient = async (req, res) => {
 
 exports.archiveProject = async (req, res) => {
   try {
+    const project = await Project.findById(req.params.id);
+    if (!project) {
+      return res.status(404).json({ error: "Proyecto no encontrado" });
+    }
+
     const archived = await Project.findByIdAndUpdate(req.params.id, { archived: true }, { new: true });
     res.status(200).json(archived);
   } catch (error) {
@@ -95,6 +105,11 @@ exports.archiveProject = async (req, res) => {
 
 exports.restoreProject = async (req, res) => {
   try {
+    const project = await Project.findById(req.params.id);
+    if (!project) {
+      return res.status(404).json({ error: 'Proyecto no encontrado' });
+    }
+
     const restored = await Project.findByIdAndUpdate(req.params.id, { archived: false }, { new: true });
     res.status(200).json(restored);
   } catch (error) {

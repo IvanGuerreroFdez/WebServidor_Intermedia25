@@ -55,6 +55,8 @@ exports.updateClient = async (req, res) => {
   try {
     /* const errorResponse = handleClientError(req, res);
     if (errorResponse) return; */
+    const client = await Client.findById(req.params.id);
+    if (!client) return res.status(404).json({ message: 'Client not found' });
     
     const updated = await Client.findByIdAndUpdate(req.params.id, req.body, { new: true });
     res.status(200).json(updated);
@@ -67,6 +69,8 @@ exports.archiveClient = async (req, res) => {
   try {
     /* const errorResponse = handleClientError(req, res);
     if (errorResponse) return; */
+    const client = await Client.findById(req.params.id);
+    if (!client) return res.status(404).json({ message: 'Client not found' });
     
     const archived = await Client.findByIdAndUpdate(req.params.id, { archived: true }, { new: true });
     res.status(200).json(archived);
@@ -91,6 +95,8 @@ exports.restoreClient = async (req, res) => {
   try {
     /* const errorResponse = handleClientError(req, res);
     if (errorResponse) return; */
+    const client = await Client.findById(req.params.id);
+    if (!client) return res.status(404).json({ message: 'Client not found' });
     
     const restored = await Client.findByIdAndUpdate(req.params.id, { archived: false }, { new: true });
     res.status(200).json(restored);
@@ -103,6 +109,8 @@ exports.deleteClient = async (req, res) => {
   try {
     /* const errorResponse = handleClientError(req, res);
     if (errorResponse) return; */
+    const client = await Client.findById(req.params.id);
+    if (!client) return res.status(404).json({ message: 'Client not found' });
     
     await Client.findByIdAndDelete(req.params.id);
     res.status(200).json({ message: "Client deleted" });

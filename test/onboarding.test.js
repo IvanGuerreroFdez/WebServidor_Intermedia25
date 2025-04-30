@@ -24,11 +24,7 @@ beforeAll(async () => {
   await usersModel.deleteMany({});
 });
 
-afterAll(async () => {
-  await usersModel.deleteMany({});
-  await mongoose.connection.close();
-  server.close();
-});
+
 
 describe('Onboarding', () => {
   it('Registro de usuario', async () => {
@@ -44,14 +40,14 @@ describe('Onboarding', () => {
     await api
       .post('/api/user/register')
       .send({ email: 'invalidemail', password: '12345678' })
-      .expect(400);
+      .expect(422);
   });
 
   it('Registro fallido (sin password)', async () => {
     await api
       .post('/api/user/register')
       .send({ email: 'user2@test.com' })
-      .expect(400);
+      .expect(422);
   });
 
   it('Registro fallido (usuario ya existe)', async () => {
@@ -74,7 +70,7 @@ describe('Onboarding', () => {
       .put('/api/user/validatemail')
       .auth(token, { type: 'bearer' })
       .send({})
-      .expect(400);
+      .expect(422);
   });
 
   it('Validar email fallido (código incorrecto)', async () => {
@@ -102,7 +98,7 @@ describe('Onboarding', () => {
     await api
       .post('/api/user/login')
       .send({ email: 'pepito', password: 'password' })
-      .expect(400);
+      .expect(422);
   });
 
   it('Login fallido (credenciales incorrectas)', async () => {
@@ -152,7 +148,7 @@ describe('Onboarding', () => {
       .put('/api/user/personadata')
       .auth(token, { type: 'bearer' })
       .send({ surname: 'Fallo', nif: '12345678A' })
-      .expect(400);
+      .expect(422);
   });
 
   it('Actualizar datos empresa correctamente', async () => {
@@ -187,7 +183,7 @@ describe('Onboarding', () => {
         city: "Madrid",
         province: "Madrid"
       })
-      .expect(400);
+      .expect(422);
   });
 
   it('Obtener usuario actual', async () => {
@@ -246,4 +242,10 @@ describe('Onboarding', () => {
       .auth(token, { type: 'bearer' })
       .expect(400);
   });
+});
+
+afterAll(async () => {
+  await usersModel.deleteMany({});
+  await mongoose.connection.close();
+  server.close();
 });
